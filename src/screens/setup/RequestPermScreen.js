@@ -8,11 +8,11 @@ import { OutlineButton, InlineButton } from '../../components/buttons'
 import { useRequestLocationPermission } from '../../hooks/useRequestLocationPermission'
 
 const RequestPermScreen = ({ navigation }) => {
-    const [permissionStatus, isGranted, requestPermission] = useRequestLocationPermission()
+    const [permissionStatus, requestPermission] = useRequestLocationPermission()
     return (
         <View style={{ flex: 1, flexDirection: 'column' }}>
             <View style={{ minHeight: '40%' }}>
-
+                {/*TODO: Show a cool image*/}
             </View>
             <View>
                 <Text style={[styles.text, { fontSize: globalStyles.fontSizeSet.fontLarge }]}>Location Permission Request</Text>
@@ -22,11 +22,11 @@ const RequestPermScreen = ({ navigation }) => {
                 <OutlineButton
                     onPress={() => console.log(`Show warning`)}
                     title={'Cancel'}
-                    width={'90%'}
+                    width={'45%'}
                     borderRadius={25} />
                 <InlineButton
                     onPress={() => permissionStatus ? navigation.navigate(routeNames.SETUP_FINISHED) : requestPermission()}
-                    title={permissionStatus ? 'Continue' : 'Prompt'} width={'90%'}
+                    title={permissionStatus ? 'Continue' : 'Prompt'} width={'45%'}
                     borderRadius={25} />
             </View>
         </View>
