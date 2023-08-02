@@ -1,7 +1,7 @@
 import * as FileSystem from 'expo-file-system';
 import * as Network from 'expo-network'
 
-import { BASE_URL } from '../api/api';
+import { CDN_URL } from '../api/api';
 
 import { saveNewResumable, deleteResumable, findAllResumables } from '../realm/downloadResumables';
 
@@ -19,7 +19,7 @@ export const getUri = (fileName) => assetDir + fileName
  * @param {string} fileName - Name of the asset to download
  * @returns string 
  */
-const assetURL = (fileName) => `${BASE_URL}/uploads/beacons/${fileName}`
+const assetURL = (fileName) => `${CDN_URL}/beacons/${fileName}`
 
 
 

@@ -1,6 +1,8 @@
 import axios from "axios";
+import { API_URL, CDN_SERVER_URL } from "@env"
 
-export const BASE_URL = 'http://192.168.0.109:3001'
+export const BASE_URL = API_URL
+export const CDN_URL = CDN_SERVER_URL
 const CONN_TIMEOUT_MS = 10000
 
 export const AbortSignalTimeout = (timeout = CONN_TIMEOUT_MS) => {

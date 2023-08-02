@@ -19,6 +19,7 @@ web-build/
 # OSX
 #
 .DS_Store
+.env
 
 # Xcode
 #

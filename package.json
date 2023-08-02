@@ -30,6 +30,7 @@
     "react-native": "^0.68.5",
     "react-native-beacons-manager": "git+https://github.com/sashko9807/react-native-beacons-manager.git",
     "react-native-bluetooth-state-manager": "git+https://github.com/sashko9807/react-native-bluetooth-state-manager.git",
+    "react-native-dotenv": "^3.4.9",
     "react-native-gesture-handler": "^2.6.0",
     "react-native-get-random-values": "^1.8.0",
     "react-native-location-enabler": "git+https://github.com/sashko9807/react-native-location-enabler.git",
