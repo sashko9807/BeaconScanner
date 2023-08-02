@@ -38,7 +38,7 @@ const LocationDisabled = ({ onPress }) => {
                 <OutlineButton
                     title="Prompt for permission"
                     onPress={onPress}
-                /> 
+                />
 
             </View>
         </MainLayout>
@@ -145,7 +145,7 @@ const HomeScreen = ({ navigation }) => {
     }
     if (!permissionStatus) return <PermissionNotGranted onPress={() => requestPermission()} />
     if (!enabled) return <LocationDisabled onPress={() => requestResolution()} />
-    // if (!bluetoothEnabled) return <BluetoothDisabled onPress={()=>requestToEnable()} />
+    if (!bluetoothEnabled) return <BluetoothDisabled onPress={() => requestToEnable()} />
 
     return (
         <MainLayout>
