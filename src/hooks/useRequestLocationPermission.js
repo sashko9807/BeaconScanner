@@ -16,16 +16,7 @@ export const useRequestLocationPermission = () => {
 
   const requestPermission = async () => {
     const permission = await PermissionsAndroid.request(
-      PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-      {
-        title: 'Beacon scanning location permission',
-        message:
-          'Beacon Managment System needs access to your location ' +
-          'so it can scan for beacons.',
-        buttonNeutral: 'Ask Me Later',
-        buttonNegative: 'Cancel',
-        buttonPositive: 'OK',
-      }
+      PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION
     ).catch((err) => {
       console.warn(err);
     });

@@ -1,15 +1,16 @@
 import { View, Text, StyleSheet } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import routeNames from '../../globals/routeNames'
 import globalStyles from '../../globals/styles'
 
 import { OutlineButton, InlineButton } from '../../components/buttons'
 
 import { useRequestLocationPermission } from '../../hooks/useRequestLocationPermission'
-
+import { RequiredAlert } from '../../components/AlertDialog'
+import RNExitApp from 'react-native-exit-app'
 const RequestPermScreen = ({ navigation }) => {
     const [permissionStatus, isGranted, requestPermission] = useRequestLocationPermission()
-    console.log(isGranted())
+    const [showRequiredAlert, setShowRequiredAlert] = useState(false)
     return (
         <View style={{ flex: 1, flexDirection: 'column' }}>
             <View style={{ minHeight: '40%' }}>
@@ -21,7 +22,7 @@ const RequestPermScreen = ({ navigation }) => {
             </View>
             <View style={styles.buttons}>
                 <OutlineButton
-                    onPress={() => console.log(`Show warning`)}
+                    onPress={() => setShowRequiredAlert(true)}
                     title={'Cancel'}
                     width={'45%'}
                     borderRadius={25} />
@@ -30,6 +31,11 @@ const RequestPermScreen = ({ navigation }) => {
                     title={isGranted() ? 'Continue' : 'Prompt'} width={'45%'}
                     borderRadius={25} />
             </View>
+            <RequiredAlert
+                isVisible={showRequiredAlert}
+                onExit={() => RNExitApp.exitApp()}
+                onCancel={() => setShowRequiredAlert(false)}
+            />
         </View>
     )
 }
