@@ -2,14 +2,16 @@ import { useState } from 'react';
 import { PermissionsAndroid } from 'react-native';
 
 export const useRequestLocationPermission = () => {
-  const [permissionStatus, setIsPermissionStatus] = useState(true);
+  const [permissionStatus, setIsPermissionStatus] = useState(false);
 
-  const isGranted = async () => {
-    const permission = await PermissionsAndroid.check(
+  const isGranted = () => {
+    const permission = PermissionsAndroid.check(
       PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION
-    );
+    ).then(res => {
+      setIsPermissionStatus(() => res)
+    });
 
-    return setIsPermissionStatus(() => permission)
+    return permissionStatus
   }
 
   const requestPermission = async () => {
