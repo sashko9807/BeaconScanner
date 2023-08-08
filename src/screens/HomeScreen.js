@@ -31,15 +31,16 @@ import { resumablesAddListener, resumablesRemoveListener } from '../realm/downlo
 const LocationDisabled = ({ onPress }) => {
     return (
         <MainLayout>
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 10 }}>
                 <View style={{ marginBottom: 10 }}>
                     <Text style={{ fontSize: globalStyles.fontSizeSet.fontRegular, textAlign: 'center' }}>Location needs to be enabled in order to scan for beacons</Text>
                 </View>
-                <OutlineButton
-                    title="Prompt for permission"
-                    onPress={onPress}
-                />
-
+                <View style={{ marginTop: 20, width: '100%', alignItems: 'center' }}>
+                    <OutlineButton
+                        title="Turn on"
+                        onPress={onPress}
+                    />
+                </View>
             </View>
         </MainLayout>
     )
@@ -47,9 +48,9 @@ const LocationDisabled = ({ onPress }) => {
 const PermissionNotGranted = ({ onPress }) => {
     return (
         <MainLayout>
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                <Text style={{ fontSize: globalStyles.fontSizeSet.fontRegular, textAlign: 'center' }}>Location permissionis not granted</Text>
-                <View style={{ marginTop: 30 }}>
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 10 }}>
+                <Text style={{ fontSize: globalStyles.fontSizeSet.fontRegular, textAlign: 'center' }}>Ranging for beacons requires location permission to be granted</Text>
+                <View style={{ marginTop: 20, width: '100%', alignItems: 'center' }}>
                     <OutlineButton
                         title="Prompt for permission"
                         onPress={onPress}
@@ -63,13 +64,13 @@ const PermissionNotGranted = ({ onPress }) => {
 const BluetoothDisabled = ({ onPress }) => {
     return (
         <MainLayout>
-            <View style={{ flex: 1, justifyContent: 'center', alignContent: 'center' }}>
-                <Text style={{ textAlign: 'center' }}>Bluetooth needs to be enabled in order to scan for beacons</Text>
-                <View style={{ marginTop: 50 }}>
+            <View style={{ flex: 1, justifyContent: 'center', paddingHorizontal: 10 }}>
+                <Text style={{ fontSize: globalStyles.fontSizeSet.fontRegular, textAlign: 'center' }}>Bluetooth needs to be enabled in order to scan for beacons</Text>
+                <View style={{ marginTop: 20, width: '100%', alignItems: 'center' }}>
                     <OutlineButton
                         title="Turn on"
                         onPress={onPress}
-                        width={"50%"} />
+                        width={"100%"} />
                 </View>
             </View>
         </MainLayout>
