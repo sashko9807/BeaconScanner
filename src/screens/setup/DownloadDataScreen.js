@@ -1,4 +1,7 @@
 import { StyleSheet, Text, View, Linking } from 'react-native'
+import { useState } from 'react'
+
+import RNExitApp from 'react-native-exit-app'
 
 import { InlineButton, OutlineButton } from '../../components/buttons'
 
@@ -17,12 +20,14 @@ import globalStyles from '../../globals/styles'
 import routeNames from '../../globals/routeNames'
 import { fetchBeacons } from '../../api/beacons'
 import { showBeaconRecords } from '../../realm/beacon'
+import { RequiredAlert } from '../../components/AlertDialog'
 
 
 const DownloadScren = ({ navigation }) => {
 
     const [store, dispatch] = useApiResultReducer();
     const [checkConnectionStatus, resetModalState, alert] = useShowInternetAlerts()
+    const [showRequiredAlert, setShowRequiredAlert] = useState(false)
 
     const openWifiSettings = () => {
         Linking.sendIntent("android.settings.WIFI_SETTINGS");
@@ -63,7 +68,7 @@ const DownloadScren = ({ navigation }) => {
                 </View>
                 <View style={styles.buttons}>
                     <OutlineButton
-                        onPress={() => console.log(`Show warning`)}
+                        onPress={() => setShowRequiredAlert(true)}
                         title={'Cancel'}
                         width={"45%"}
                         borderRadius={25} />
@@ -99,6 +104,10 @@ const DownloadScren = ({ navigation }) => {
                 onContinue={() => { downloadData(true); }}
                 onDismiss={() => { resetModalState() }}
             />
+            <RequiredAlert
+                isVisible={showRequiredAlert}
+                onExit={() => RNExitApp.exitApp()}
+                onCancel={() => setShowRequiredAlert(false)} />
         </>
     )
 }

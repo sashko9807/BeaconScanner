@@ -30,6 +30,21 @@ const AlertDialog = ({
 );
 
 
+export const RequiredAlert = ({ isVisible, onExit, onCancel }) => (
+  <AlertDialog
+    isVisible={isVisible}
+    title={'Required step'}
+    message={"This step is required and can't be skipped.\n\nDo you want to exit the application?"}
+  >
+    <Pressable onPress={onExit} style={modalStyle.modalActionBtn}>
+      <Text style={modalStyle.modalActionBtnTxt}>Exit application</Text>
+    </Pressable>
+    <Pressable onPress={onCancel} style={modalStyle.modalActionBtn}>
+      <Text style={modalStyle.modalActionBtnTxt}>Cancel</Text>
+    </Pressable>
+  </AlertDialog>
+)
+
 export const ShowDataChargeAlert = ({ isVisible, onTurnWifi, onContinue, onDismiss }) => {
   return (
     <AlertDialog
@@ -49,6 +64,8 @@ export const ShowDataChargeAlert = ({ isVisible, onTurnWifi, onContinue, onDismi
     </AlertDialog>
   )
 }
+
+
 
 
 export const ShowNoInternetAlert = ({ isVisible, onTurnWifi, onDismiss }) => {
