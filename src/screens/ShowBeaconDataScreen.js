@@ -1,6 +1,5 @@
 import { Image, StyleSheet, Text, View, StatusBar } from 'react-native';
-import React from 'react';
-import { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useIsFocused } from '@react-navigation/native';
 
 import ActivityIndicatorComponent from '../components/ActivityIndicatorComponent';
@@ -40,20 +39,10 @@ const ShowBeaconDataScreen = ({ route }) => {
 };
 
 const ImageData = ({ imageUri }) => {
-
-  const isPortrait = Image.getSize(imageUri, (width, height) => { if (width < height) return true })
+  const [isPortrait, setIsPortrait] = useState(true)
+  const imageSize = Image.getSize(imageUri, (width, height) => { setIsPortrait(width < height) })
+  const isFocused = useIsFocused()
   useEffect(() => {
-    // ScreenOrientation.getOrientationAsync().then((info) => {
-    //   setOrientation(info);
-    // });
-
-    // const subscription = ScreenOrientation.addOrientationChangeListener((evt) => {
-    //   console.log(`Changing value to ${evt.orientationInfo.orientation}`)
-    //   setOrientation(evt.orientationInfo.orientation);
-    // });
-    // return () => {
-    //   ScreenOrientation.removeOrientationChangeListener(subscription);
-    // };
 
     const lockOrientation = async () => {
       if (isPortrait) {
@@ -62,15 +51,25 @@ const ImageData = ({ imageUri }) => {
       return await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE)
     }
 
-    lockOrientation()
-  }, [isPortrait]);
+    const unlockOrientation = async () => await ScreenOrientation.unlockAsync()
+
+    if (isFocused) {
+      lockOrientation()
+    } else {
+      unlockOrientation()
+    }
+
+
+
+  }, [isPortrait, isFocused]);
 
   return (
     <View style={{ flex: 1 }}>
       <Image source={{ uri: imageUri }} style={{
         height: '100%',
+        width: '100%'
       }}
-        resizeMode={'stretch'}
+        resizeMode={'cover'}
       />
     </View>
   );
