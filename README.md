@@ -23,7 +23,8 @@ Only iBeacon and ALTbeacon protocols are supported for now.
 1. Go to [firebase console](https://console.firebase.google.com/) and select existing, or create new project. The project should be the same as [beacon-restful-service](https://github.com/sashko9807/beacon-restful-service)
 2. Create a new android app
 3. Download the generated `google-services.json`, and paste it in `/android/app/`
-4. Go to `/android/app/src/main/AndroidManifest.xml` and rename the package name, with the name of the app, which was created in firebase
+4. Go to `/android/app/src/main/AndroidManifest.xml` and change package, from `com.diplomna.beaconscanner` to the name of the app that was created in firebase.
+5. Go to `android/app/build.gradle` find `applicationId` and rename `com.diplomna.beaconscanner` with the name of the app that was created in firebase
 
 ### Setting up project
 
